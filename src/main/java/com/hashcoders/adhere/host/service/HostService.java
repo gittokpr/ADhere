@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class HostService {
     private final HostRepository hostRepository;
 
-    public Host getHostById(final Long hostId) {
+    public Host getReferenceById(final Long hostId) {
         return hostRepository.getReferenceById(hostId);
     }
 }

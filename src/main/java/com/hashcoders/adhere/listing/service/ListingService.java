@@ -1,7 +1,7 @@
 package com.hashcoders.adhere.listing.service;
 
 import com.hashcoders.adhere.booking.entity.Booking;
-import com.hashcoders.adhere.booking.service.BookingService;
+import com.hashcoders.adhere.booking.repository.BookingRepository;
 import com.hashcoders.adhere.host.entity.Host;
 import com.hashcoders.adhere.host.service.HostService;
 import com.hashcoders.adhere.listing.dto.ListingRequest;
@@ -19,10 +19,10 @@ import org.springframework.web.server.ResponseStatusException;
 public class ListingService {
     private final ListingRepository listingRepository;
     private final HostService hostService;
-    private final BookingService bookingService;
+    private final BookingRepository bookingRepository;
 
     public ListingResponse createListing(final ListingRequest listingRequest) {
-        Host host = hostService.getHostById(listingRequest.getHostId());
+        Host host = hostService.getReferenceById(listingRequest.getHostId());
         Listing listing = new Listing();
         listing.setListingName(listingRequest.getName());
         listing.setHost(host);
@@ -60,6 +60,10 @@ public class ListingService {
     }
 
     public List<Booking> getAllBookingsForId(final Long id) {
-        return bookingService.findByListingId(id);
+        return bookingRepository.findByListingId(id);
+    }
+
+    public Listing getReferenceById(final Long listingId) {
+        return listingRepository.getReferenceById(listingId);
     }
 }
