@@ -73,6 +73,10 @@ public class ListingService {
         return listingRepository.getReferenceById(listingId);
     }
 
+    public List<Listing> getListingsByAHost(Long hostId)  {
+        return listingRepository.findByHostId(hostId);
+    }
+
     public List<ListingDetails> getAllListing(String location, OffsetDateTime startTime, OffsetDateTime endTime) {
         if (StringUtils.isBlank(location)
                 && Objects.isNull(startTime)

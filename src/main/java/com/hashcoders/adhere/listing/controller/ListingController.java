@@ -4,6 +4,7 @@ import com.hashcoders.adhere.booking.entity.Booking;
 import com.hashcoders.adhere.listing.dto.ListingDetails;
 import com.hashcoders.adhere.listing.dto.ListingRequest;
 import com.hashcoders.adhere.listing.dto.ListingResponse;
+import com.hashcoders.adhere.listing.entity.Listing;
 import com.hashcoders.adhere.listing.service.ListingService;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -36,6 +37,11 @@ public class ListingController {
     @GetMapping("/{id}/bookings")
     public List<Booking> getAllBookingForId(@PathVariable Long id) {
         return listingService.getAllBookingsForId(id);
+    }
+
+    @GetMapping("/host/{id}")
+    public List<Listing> getListingsByAHost(@PathVariable("id") Long hostId) {
+        return listingService.getListingsByAHost(hostId);
     }
 
     @GetMapping

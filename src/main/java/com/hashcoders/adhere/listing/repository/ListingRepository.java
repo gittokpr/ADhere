@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ListingRepository extends JpaRepository<Listing, Long> {
+    List<Listing> findByHostId(Long hostId);
 
     @Query(value = "select "
             + "b.id as bookingId, "
