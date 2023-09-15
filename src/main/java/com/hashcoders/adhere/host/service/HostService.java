@@ -1,5 +1,6 @@
 package com.hashcoders.adhere.host.service;
 
+import com.hashcoders.adhere.host.entity.Host;
 import com.hashcoders.adhere.host.repository.HostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,4 +9,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class HostService {
     private final HostRepository hostRepository;
+
+    public Host getHostById(final Long hostId) {
+        return hostRepository.getReferenceById(hostId);
+    }
 }

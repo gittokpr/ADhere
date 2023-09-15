@@ -3,7 +3,6 @@ package com.hashcoders.adhere.listing.controller;
 import com.hashcoders.adhere.booking.entity.Booking;
 import com.hashcoders.adhere.listing.dto.ListingRequest;
 import com.hashcoders.adhere.listing.dto.ListingResponse;
-import com.hashcoders.adhere.listing.entity.Listing;
 import com.hashcoders.adhere.listing.service.ListingService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,7 @@ public class ListingController {
     private final ListingService listingService;
 
     @PostMapping
-    public Listing createListing(@RequestBody ListingRequest listingRequest) {
+    public ListingResponse createListing(@RequestBody ListingRequest listingRequest) {
         return listingService.createListing(listingRequest);
     }
 
