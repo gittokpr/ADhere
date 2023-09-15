@@ -20,7 +20,7 @@ public class ListingController {
     }
 
     @GetMapping()
-    public List<Listing> getListingsByAHost(@RequestParam String hostId) throws Exception {
+    public List<Listing> getListingsByAHost(@RequestParam String hostId) {
         return listingService.getListingsByAHost(hostId);
     }
 }

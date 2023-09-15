@@ -24,11 +24,8 @@ public class ListingService {
         return listingRepository.save(listing);
     }
 
-    public List<Listing> getListingsByAHost(String hostId) throws Exception {
+    public List<Listing> getListingsByAHost(String hostId)  {
         List<Listing> hostListings = listingRepository.findByHostId(Long.parseLong(hostId));
-        if(hostListings.size() == 0) {
-            throw new Exception("Invalid host id");
-        }
         return  hostListings;
     }
 }
