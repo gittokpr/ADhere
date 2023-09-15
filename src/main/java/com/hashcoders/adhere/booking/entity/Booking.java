@@ -7,7 +7,6 @@ import com.hashcoders.adhere.payment.entity.Payment;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
