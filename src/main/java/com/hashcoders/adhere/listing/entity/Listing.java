@@ -27,4 +27,6 @@ public class Listing {
     private String listingType;
     private String status;
     private String description;
+    private Float rating;
+    private Boolean isSponsored;
 }
