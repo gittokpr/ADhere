@@ -29,7 +29,7 @@ public class ListingController {
         return listingService.getListingById(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/bookings")
     public List<Booking> getAllBookingForId(@PathVariable Long id) {
         return listingService.getAllBookingsForId(id);
     }
