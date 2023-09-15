@@ -4,6 +4,7 @@ import com.hashcoders.adhere.booking.service.BookingService;
 import com.hashcoders.adhere.customer.dto.CustomerDetailsResponse;
 import com.hashcoders.adhere.customer.entity.Customer;
 import com.hashcoders.adhere.customer.repository.CustomerRepository;
+import com.hashcoders.adhere.listing.entity.Listing;
 import com.hashcoders.adhere.payment.service.PaymentService;
 import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,9 @@ public class CustomerService {
                 .activeBookings(activeCustomerBookings)
                 .totalInvestments(totalInvestment)
                 .build();
+    }
+
+    public Customer getReferenceById(final Long customerId) {
+        return customerRepository.getReferenceById(customerId);
     }
 }

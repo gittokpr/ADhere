@@ -2,9 +2,12 @@ package com.hashcoders.adhere.booking.service;
 
 import com.hashcoders.adhere.booking.dto.BookingResponse;
 import com.hashcoders.adhere.booking.dto.CreateBooking;
+import com.hashcoders.adhere.booking.dto.CreateReservation;
 import com.hashcoders.adhere.booking.dto.ReviewBookingRequest;
 import com.hashcoders.adhere.booking.entity.Booking;
 import com.hashcoders.adhere.booking.repository.BookingRepository;
+import com.hashcoders.adhere.customer.repository.CustomerRepository;
+import com.hashcoders.adhere.customer.service.CustomerService;
 import com.hashcoders.adhere.host.service.HostService;
 import com.hashcoders.adhere.listing.service.ListingService;
 import java.util.List;
@@ -21,6 +24,7 @@ public class BookingService {
     private final BookingRepository bookingRepository;
     private final ListingService listingService;
     private final HostService hostService;
+    private final CustomerRepository customerRepository;
 
     public List<BookingResponse> createBookings(final List<CreateBooking> createBookingList) {
         final List<Booking> bookingList = createBookingList.stream()
@@ -34,6 +38,27 @@ public class BookingService {
                     booking.setEndTime(bookingRequest.getEndTime());
                     return booking;
                 })
+                .collect(Collectors.toList());
+        final List<Booking> bookings = bookingRepository.saveAll(bookingList);
+        return bookings.stream()
+                .map(BookingService::getBookingResponse)
+                .collect(Collectors.toList());
+    }
+
+    public List<BookingResponse> createReservation(final List<CreateReservation> createReservationList) {
+        final List<Booking> bookingList = createReservationList.stream()
+                .map(reserveRequest -> {
+                    Optional<Booking> bookingOptional = bookingRepository.findById(reserveRequest.getBookingId());
+                    if (bookingOptional.isPresent()) {
+                        Booking booking = bookingOptional.get();
+                        booking.setCustomer(customerRepository.getReferenceById(reserveRequest.getCustomerId()));
+                        booking.setStatus("REVIEW_IN_PROGRESS");
+                        booking.setAsset(reserveRequest.getAsset());
+                        return booking;
+                    }
+                    return null;
+                })
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
         final List<Booking> bookings = bookingRepository.saveAll(bookingList);
         return bookings.stream()
