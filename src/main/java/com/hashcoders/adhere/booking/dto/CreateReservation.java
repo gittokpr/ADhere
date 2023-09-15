@@ -8,4 +8,5 @@ import lombok.Data;
 public class CreateReservation {
     private Long bookingId;
     private Long customerId;
+    private String asset;
 }

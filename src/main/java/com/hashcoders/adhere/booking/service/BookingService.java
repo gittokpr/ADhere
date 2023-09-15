@@ -34,7 +34,6 @@ public class BookingService {
                     booking.setHost(hostService.getReferenceById(bookingRequest.getHostId()));
                     booking.setRate(bookingRequest.getRate());
                     booking.setStatus("ACTIVE");
-                    booking.setAsset(bookingRequest.getAsset());
                     booking.setStartTime(bookingRequest.getStartTime());
                     booking.setEndTime(bookingRequest.getEndTime());
                     return booking;
@@ -53,11 +52,13 @@ public class BookingService {
                     if (bookingOptional.isPresent()) {
                         Booking booking = bookingOptional.get();
                         booking.setCustomer(customerRepository.getReferenceById(reserveRequest.getCustomerId()));
-                        booking.setStatus("UNDER_REVIEW");
+                        booking.setStatus("REVIEW_IN_PROGRESS");
+                        booking.setAsset(reserveRequest.getAsset());
                         return booking;
                     }
                     return null;
                 })
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
         final List<Booking> bookings = bookingRepository.saveAll(bookingList);
         return bookings.stream()
