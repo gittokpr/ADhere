@@ -38,7 +38,7 @@ public class ListingController {
     }
 
     @GetMapping("/host/{id}")
-    public List<Listing> getListingsByAHost(@PathVariable String hostId) {
+    public List<Listing> getListingsByAHost(@PathVariable("id") Long hostId) {
         return listingService.getListingsByAHost(hostId);
     }
 }

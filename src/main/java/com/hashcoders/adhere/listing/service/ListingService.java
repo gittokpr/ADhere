@@ -68,7 +68,7 @@ public class ListingService {
         return listingRepository.getReferenceById(listingId);
     }
 
-    public List<Listing> getListingsByAHost(String hostId)  {
-        return listingRepository.findByHostId(Long.parseLong(hostId));
+    public List<Listing> getListingsByAHost(Long hostId)  {
+        return listingRepository.findByHostId(hostId);
     }
 }
