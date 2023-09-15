@@ -11,6 +11,7 @@ public class CreateBooking {
     private Long listingId;
     private Long hostId;
     private BigDecimal rate;
+    private String asset;
     private OffsetDateTime startTime;
     private OffsetDateTime endTime;
 }
