@@ -1,6 +1,5 @@
 package com.hashcoders.adhere.listing.dto;
 
-import com.hashcoders.adhere.host.entity.Host;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,7 +7,7 @@ import lombok.Data;
 @Builder
 public class ListingResponse {
     private String listingName;
-    private Host host;
+    private Long hostId;
     private String location;
     private String dimension;
     private String format;
