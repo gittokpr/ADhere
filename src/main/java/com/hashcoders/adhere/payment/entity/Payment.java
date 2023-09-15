@@ -1,12 +1,12 @@
-package com.hashcoders.adhere.host.entity;
+package com.hashcoders.adhere.payment.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "host")
+@Table(name = "payment")
 @Data
-public class Host {
+public class Payment {
     private Long id;
 }

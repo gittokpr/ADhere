@@ -1,6 +1,6 @@
-package com.hashcoders.adhere.user.controller;
+package com.hashcoders.adhere.customer.controller;
 
-import com.hashcoders.adhere.user.service.UserService;
+import com.hashcoders.adhere.customer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("v1/user")
 @RequiredArgsConstructor
-public class UserController {
-    private final UserService userService;
+public class CustomerController {
+    private final CustomerService customerService;
 }

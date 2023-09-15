@@ -1,10 +1,12 @@
-package com.hashcoders.adhere.user.entity;
+package com.hashcoders.adhere.customer.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "user")
-public class User {
+@Data
+public class Customer {
     private Long id;
 }
