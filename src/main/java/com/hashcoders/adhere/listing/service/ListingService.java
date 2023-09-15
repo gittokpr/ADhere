@@ -62,6 +62,8 @@ public class ListingService {
                 .listingType(listing.getListingType())
                 .status(listing.getStatus())
                 .description(listing.getDescription())
+                .rating(listing.getRating())
+                .isSponsored(listing.getIsSponsored())
                 .build();
     }
 
