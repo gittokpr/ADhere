@@ -7,6 +7,9 @@ import com.hashcoders.adhere.payment.entity.Payment;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -16,6 +19,8 @@ import lombok.Data;
 @Table
 @Data
 public class Booking {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "listing_id", referencedColumnName = "id")
