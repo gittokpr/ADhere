@@ -5,6 +5,7 @@ import com.hashcoders.adhere.host.entity.dto.HostDetail;
 import com.hashcoders.adhere.host.repository.HostRepository;
 import com.hashcoders.adhere.payment.repository.dto.HostPaymentHistory;
 import com.hashcoders.adhere.payment.service.PaymentService;
+import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -24,17 +25,19 @@ public class HostService {
     public HostDetail getHostDetail(final long id) {
         Host host = hostRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         HostPaymentHistory hostPaymentHistory = paymentService.getHostPaymentHistory(id);
-        if (ObjectUtils.isEmpty(hostPaymentHistory)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        return HostDetail.builder()
-                .name(host.getName())
-                .mail(host.getMail())
-                .phoneNumber(host.getPhoneNumber())
-                .address(host.getAddress())
-                .customerCount(hostPaymentHistory.getCustomerCount())
-                .totalCount(hostPaymentHistory.getTotalCount())
-                .totalRevenue(hostPaymentHistory.getTotalRevenue())
-                .build();
+        return buildHostDetail(host, hostPaymentHistory);
+    }
+
+    public HostDetail buildHostDetail(Host host, HostPaymentHistory hostPaymentHistory) {
+        HostDetail hostDetail = new HostDetail();
+        hostDetail.setName(host.getName());
+        hostDetail.setMail(host.getMail());
+        hostDetail.setPhoneNumber(host.getPhoneNumber());
+        hostDetail.setAddress(host.getAddress());
+        hostDetail.setTotalCount(hostPaymentHistory.getTotalCount());
+        hostDetail.setCustomerCount(hostPaymentHistory.getCustomerCount());
+        hostDetail.setTotalRevenue(
+                ObjectUtils.isEmpty(hostPaymentHistory.getTotalRevenue()) ? BigDecimal.ZERO : hostPaymentHistory.getTotalRevenue());
+        return hostDetail;
     }
 }
