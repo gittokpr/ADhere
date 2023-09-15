@@ -4,10 +4,9 @@ import com.hashcoders.adhere.listing.dto.ListingRequest;
 import com.hashcoders.adhere.listing.entity.Listing;
 import com.hashcoders.adhere.listing.service.ListingService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("v1/listing")
@@ -18,5 +17,10 @@ public class ListingController {
     @PostMapping
     public Listing createListing(@RequestBody ListingRequest listingRequest) {
         return listingService.createListing(listingRequest);
+    }
+
+    @GetMapping()
+    public List<Listing> getListingsByAHost(@RequestParam String hostId) throws Exception {
+        return listingService.getListingsByAHost(hostId);
     }
 }

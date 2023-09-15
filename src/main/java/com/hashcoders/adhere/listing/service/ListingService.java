@@ -6,6 +6,8 @@ import com.hashcoders.adhere.listing.repository.ListingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ListingService {
@@ -20,5 +22,13 @@ public class ListingService {
         listing.setListingType(listingRequest.getType());
         listing.setStatus("ACTIVE");
         return listingRepository.save(listing);
+    }
+
+    public List<Listing> getListingsByAHost(String hostId) throws Exception {
+        List<Listing> hostListings = listingRepository.findByHostId(Long.parseLong(hostId));
+        if(hostListings.size() == 0) {
+            throw new Exception("Invalid host id");
+        }
+        return  hostListings;
     }
 }
