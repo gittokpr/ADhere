@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5439/adhere
+    username: postgres
+    password: postgres
+  flyway:
+    enabled: true
