@@ -1,9 +1,12 @@
 package com.hashcoders.adhere.listing.controller;
 
 import com.hashcoders.adhere.listing.dto.ListingRequest;
+import com.hashcoders.adhere.listing.dto.ListingResponse;
 import com.hashcoders.adhere.listing.entity.Listing;
 import com.hashcoders.adhere.listing.service.ListingService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +21,10 @@ public class ListingController {
     @PostMapping
     public Listing createListing(@RequestBody ListingRequest listingRequest) {
         return listingService.createListing(listingRequest);
+    }
+
+    @GetMapping("/{id}")
+    public ListingResponse getListingById(@PathVariable final Long id) {
+        return listingService.getListingById(id);
     }
 }
