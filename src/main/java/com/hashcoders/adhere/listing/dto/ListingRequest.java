@@ -7,6 +7,7 @@ import lombok.Data;
 @Builder
 public class ListingRequest {
     private String type;
+    private Long hostId;
     private String name;
     private String location;
     private String dimensions;
