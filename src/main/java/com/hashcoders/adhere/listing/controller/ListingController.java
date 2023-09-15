@@ -1,9 +1,11 @@
 package com.hashcoders.adhere.listing.controller;
 
+import com.hashcoders.adhere.booking.entity.Booking;
 import com.hashcoders.adhere.listing.dto.ListingRequest;
 import com.hashcoders.adhere.listing.dto.ListingResponse;
 import com.hashcoders.adhere.listing.entity.Listing;
 import com.hashcoders.adhere.listing.service.ListingService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,5 +28,10 @@ public class ListingController {
     @GetMapping("/{id}")
     public ListingResponse getListingById(@PathVariable final Long id) {
         return listingService.getListingById(id);
+    }
+
+    @GetMapping("/{id}")
+    public List<Booking> getAllBookingForId(@PathVariable Long id) {
+        return listingService.getAllBookingsForId(id);
     }
 }
