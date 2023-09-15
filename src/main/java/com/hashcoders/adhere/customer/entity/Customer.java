@@ -9,4 +9,8 @@ import lombok.Data;
 @Data
 public class Customer {
     private Long id;
+    private String name;
+    private String mail;
+    private String phoneNumber;
+    private String address;
 }
