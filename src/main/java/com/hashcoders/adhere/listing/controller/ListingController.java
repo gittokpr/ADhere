@@ -5,10 +5,16 @@ import com.hashcoders.adhere.listing.dto.ListingRequest;
 import com.hashcoders.adhere.listing.dto.ListingResponse;
 import com.hashcoders.adhere.listing.entity.Listing;
 import com.hashcoders.adhere.listing.service.ListingService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("v1/listing")
@@ -31,8 +37,8 @@ public class ListingController {
         return listingService.getAllBookingsForId(id);
     }
 
-    @GetMapping()
-    public List<Listing> getListingsByAHost(@RequestParam String hostId) {
+    @GetMapping("/host/{id}")
+    public List<Listing> getListingsByAHost(@PathVariable String hostId) {
         return listingService.getListingsByAHost(hostId);
     }
 }
