@@ -5,9 +5,7 @@ import com.hashcoders.adhere.booking.dto.CreateBooking;
 import com.hashcoders.adhere.booking.dto.ReviewBookingRequest;
 import com.hashcoders.adhere.booking.entity.Booking;
 import com.hashcoders.adhere.booking.repository.BookingRepository;
-import com.hashcoders.adhere.host.repository.HostRepository;
 import com.hashcoders.adhere.host.service.HostService;
-import com.hashcoders.adhere.listing.repository.ListingRepository;
 import com.hashcoders.adhere.listing.service.ListingService;
 import java.util.List;
 import java.util.Objects;
@@ -77,5 +75,9 @@ public class BookingService {
             return getBookingResponse(bookingFinal);
         }
         return null;
+    }
+
+    public Long getActiveBookingByCustomerIdAndStatus(final Long id, final String status) {
+        return bookingRepository.getActiveCustomerBookingsByIdAndStatus(id, status);
     }
 }
