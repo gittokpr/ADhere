@@ -14,6 +14,20 @@ phone_number varchar,
 address varchar
 );
 
+create table if not exists listing (
+     id BIGSERIAL NOT NULL PRIMARY KEY,
+     listing_name varchar,
+     host_id bigint,
+     location varchar,
+     dimension varchar,
+     format varchar,
+     listing_type varchar,
+     status varchar,
+     description varchar,
+     constraint fk_listing_host_id foreign key(host_id) references host(id)
+);
+
+
 create table if not exists payment(
 id BIGSERIAL NOT NULL PRIMARY KEY,
 host_id bigint,
@@ -42,18 +56,5 @@ constraint fk_booking_listing_id foreign key(listing_id) references listing(id),
 constraint fk_booking_host_id foreign key(host_id) references host(id),
 constraint fk_booking_customer_id foreign key(customer_id) references customer(id),
 constraint fk_booking_payment_id foreign key(payment_id) references payment(id)
-);
-
-create table if not exists listing (
-     id BIGSERIAL NOT NULL PRIMARY KEY,
-     listing_name varchar,
-     host_id bigint,
-     location varchar,
-     dimension varchar,
-     format varchar,
-     listing_type varchar,
-     status varchar,
-     description varchar,
-     constraint fk_listing_host_id foreign key(host_id) references host(id)
 );
 
